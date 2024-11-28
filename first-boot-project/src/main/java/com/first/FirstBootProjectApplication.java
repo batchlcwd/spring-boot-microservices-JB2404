@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
 //new line
 @SpringBootApplication
 //@Configuration
-//@ComponentScan("com.first")
+//@ComponentScan(basePackages = {"com.first","pack"})
 //@EnableAutoConfiguration
 public class FirstBootProjectApplication {
 

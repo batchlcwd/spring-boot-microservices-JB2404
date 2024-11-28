@@ -1,0 +1,10 @@
+server:
+  port: 8088
+spring:
+  application:
+    name: "first-web-app"
+  datasource:
+    username: root
+    password: root
+    url: "url"
+
