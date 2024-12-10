@@ -1,0 +1,445 @@
+mysql> \h
+
+For information about MySQL products and services, visit:
+   http://www.mysql.com/
+For developer information, including the MySQL Reference Manual, visit:
+   http://dev.mysql.com/
+To buy MySQL Enterprise support, training, or other products, visit:
+   https://shop.mysql.com/
+
+List of all MySQL commands:
+Note that all text commands must be first on line and end with ';'
+?         (\?) Synonym for `help'.
+clear     (\c) Clear the current input statement.
+connect   (\r) Reconnect to the server. Optional arguments are db and host.
+delimiter (\d) Set statement delimiter.
+edit      (\e) Edit command with $EDITOR.
+ego       (\G) Send command to mysql server, display result vertically.
+exit      (\q) Exit mysql. Same as quit.
+go        (\g) Send command to mysql server.
+help      (\h) Display this help.
+nopager   (\n) Disable pager, print to stdout.
+notee     (\t) Don't write into outfile.
+pager     (\P) Set PAGER [to_pager]. Print the query results via PAGER.
+print     (\p) Print current command.
+prompt    (\R) Change your mysql prompt.
+quit      (\q) Quit mysql.
+rehash    (\#) Rebuild completion hash.
+source    (\.) Execute an SQL script file. Takes a file name as an argument.
+status    (\s) Get status information from the server.
+system    (\!) Execute a system shell command.
+tee       (\T) Set outfile [to_outfile]. Append everything into given outfile.
+use       (\u) Use another database. Takes database name as argument.
+charset   (\C) Switch to another charset. Might be needed for processing binlog with multi-byte charsets.
+warnings  (\W) Show warnings after every statement.
+nowarning (\w) Don't show warnings after every statement.
+resetconnection(\x) Clean session context.
+query_attributes Sets string parameters (name1 value1 name2 value2 ...) for the next query to pick up.
+ssl_session_data_print Serializes the current SSL session data to stdout or file
+
+For server side help, type 'help contents'
+
+mysql> \c
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| e_learn_batch      |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+5 rows in set (0.00 sec)
+
+mysql> create database jb2404
+    -> ;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| e_learn_batch      |
+| information_schema |
+| jb2404             |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+6 rows in set (0.00 sec)
+
+mysql> use database jb2404;
+ERROR 1049 (42000): Unknown database 'database'
+mysql> use jb2404;
+Database changed
+mysql> create table users(user_id int primary key, name varchar(100), city varchar(50) not null , salary int );
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc users;
++---------+--------------+------+-----+---------+-------+
+| Field   | Type         | Null | Key | Default | Extra |
++---------+--------------+------+-----+---------+-------+
+| user_id | int          | NO   | PRI | NULL    |       |
+| name    | varchar(100) | YES  |     | NULL    |       |
+| city    | varchar(50)  | NO   |     | NULL    |       |
+| salary  | int          | YES  |     | NULL    |       |
++---------+--------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+mysql> insert into users(user_id,name,city,salary) values(1101,'Vivek Ashok','Delhi',50000);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into users(user_id,name,city,salary) values(1102,'Ankit','Kanpur',50000);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into users values(1100,'Pankaj','Lucknow',34000);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from users;
++---------+-------------+---------+--------+
+| user_id | name        | city    | salary |
++---------+-------------+---------+--------+
+|    1100 | Pankaj      | Lucknow |  34000 |
+|    1101 | Vivek Ashok | Delhi   |  50000 |
+|    1102 | Ankit       | Kanpur  |  50000 |
++---------+-------------+---------+--------+
+3 rows in set (0.00 sec)
+
+mysql> insert into users value (5503,'Subham',);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1
+mysql> insert into users value (5503,'Subham','Banglore',1231);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from users;
++---------+-------------+----------+--------+
+| user_id | name        | city     | salary |
++---------+-------------+----------+--------+
+|    1100 | Pankaj      | Lucknow  |  34000 |
+|    1101 | Vivek Ashok | Delhi    |  50000 |
+|    1102 | Ankit       | Kanpur   |  50000 |
+|    5503 | Subham      | Banglore |   1231 |
++---------+-------------+----------+--------+
+4 rows in set (0.01 sec)
+
+mysql> select * from users where salary = 50000;
++---------+-------------+--------+--------+
+| user_id | name        | city   | salary |
++---------+-------------+--------+--------+
+|    1101 | Vivek Ashok | Delhi  |  50000 |
+|    1102 | Ankit       | Kanpur |  50000 |
++---------+-------------+--------+--------+
+2 rows in set (0.00 sec)
+
+mysql> select * from users where salary > = 50000;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '= 50000' at line 1
+mysql> select * from users where salary > = 49000;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '= 49000' at line 1
+mysql> select * from users where salary >  49000;
++---------+-------------+--------+--------+
+| user_id | name        | city   | salary |
++---------+-------------+--------+--------+
+|    1101 | Vivek Ashok | Delhi  |  50000 |
+|    1102 | Ankit       | Kanpur |  50000 |
++---------+-------------+--------+--------+
+2 rows in set (0.00 sec)
+
+mysql> select * from users where salary >  10000;
++---------+-------------+---------+--------+
+| user_id | name        | city    | salary |
++---------+-------------+---------+--------+
+|    1100 | Pankaj      | Lucknow |  34000 |
+|    1101 | Vivek Ashok | Delhi   |  50000 |
+|    1102 | Ankit       | Kanpur  |  50000 |
++---------+-------------+---------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select * from users where salary = 5000 and city ='Delhi'
+    -> ;
+Empty set (0.00 sec)
+
+mysql> select * from users where salary = 50000 and city ='Delhi'
+    -> ;
++---------+-------------+-------+--------+
+| user_id | name        | city  | salary |
++---------+-------------+-------+--------+
+|    1101 | Vivek Ashok | Delhi |  50000 |
++---------+-------------+-------+--------+
+1 row in set (0.00 sec)
+
+mysql> select * from users where salary = 50000 or  city ='Delhi'
+    -> ;
++---------+-------------+--------+--------+
+| user_id | name        | city   | salary |
++---------+-------------+--------+--------+
+|    1101 | Vivek Ashok | Delhi  |  50000 |
+|    1102 | Ankit       | Kanpur |  50000 |
++---------+-------------+--------+--------+
+2 rows in set (0.00 sec)
+
+mysql> select name , city from users;
++-------------+----------+
+| name        | city     |
++-------------+----------+
+| Pankaj      | Lucknow  |
+| Vivek Ashok | Delhi    |
+| Ankit       | Kanpur   |
+| Subham      | Banglore |
++-------------+----------+
+4 rows in set (0.00 sec)
+
+mysql> select * from users;
++---------+-------------+----------+--------+
+| user_id | name        | city     | salary |
++---------+-------------+----------+--------+
+|    1100 | Pankaj      | Lucknow  |  34000 |
+|    1101 | Vivek Ashok | Delhi    |  50000 |
+|    1102 | Ankit       | Kanpur   |  50000 |
+|    5503 | Subham      | Banglore |   1231 |
++---------+-------------+----------+--------+
+4 rows in set (0.01 sec)
+
+mysql> select * from users where city IN ('Lucknow','Delhi','Kanpur');
++---------+-------------+---------+--------+
+| user_id | name        | city    | salary |
++---------+-------------+---------+--------+
+|    1100 | Pankaj      | Lucknow |  34000 |
+|    1101 | Vivek Ashok | Delhi   |  50000 |
+|    1102 | Ankit       | Kanpur  |  50000 |
++---------+-------------+---------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select * from users where salary BETWEEN 34000 AND 60000;
++---------+-------------+---------+--------+
+| user_id | name        | city    | salary |
++---------+-------------+---------+--------+
+|    1100 | Pankaj      | Lucknow |  34000 |
+|    1101 | Vivek Ashok | Delhi   |  50000 |
+|    1102 | Ankit       | Kanpur  |  50000 |
++---------+-------------+---------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select * from users where salary BETWEEN 34000 AND 50000;
++---------+-------------+---------+--------+
+| user_id | name        | city    | salary |
++---------+-------------+---------+--------+
+|    1100 | Pankaj      | Lucknow |  34000 |
+|    1101 | Vivek Ashok | Delhi   |  50000 |
+|    1102 | Ankit       | Kanpur  |  50000 |
++---------+-------------+---------+--------+
+3 rows in set (0.00 sec)
+
+mysql> insert into users values (1414,'Abhinav','Lucknow',252555);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into users values (1414,'Abhishek','Lucknow',252555);
+ERROR 1062 (23000): Duplicate entry '1414' for key 'users.PRIMARY'
+mysql> insert into users values (1415,'Abhishek','Lucknow',252555);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from users;
++---------+-------------+----------+--------+
+| user_id | name        | city     | salary |
++---------+-------------+----------+--------+
+|    1100 | Pankaj      | Lucknow  |  34000 |
+|    1101 | Vivek Ashok | Delhi    |  50000 |
+|    1102 | Ankit       | Kanpur   |  50000 |
+|    1414 | Abhinav     | Lucknow  | 252555 |
+|    1415 | Abhishek    | Lucknow  | 252555 |
+|    5503 | Subham      | Banglore |   1231 |
++---------+-------------+----------+--------+
+6 rows in set (0.00 sec)
+
+mysql> select * from users where name LIKE 'Ab%';
++---------+----------+---------+--------+
+| user_id | name     | city    | salary |
++---------+----------+---------+--------+
+|    1414 | Abhinav  | Lucknow | 252555 |
+|    1415 | Abhishek | Lucknow | 252555 |
++---------+----------+---------+--------+
+2 rows in set (0.01 sec)
+
+mysql> select * from users where name LIKE '%k';
++---------+-------------+---------+--------+
+| user_id | name        | city    | salary |
++---------+-------------+---------+--------+
+|    1101 | Vivek Ashok | Delhi   |  50000 |
+|    1415 | Abhishek    | Lucknow | 252555 |
++---------+-------------+---------+--------+
+2 rows in set (0.00 sec)
+
+mysql> select * from users where city LIKE '_u%';
++---------+----------+---------+--------+
+| user_id | name     | city    | salary |
++---------+----------+---------+--------+
+|    1100 | Pankaj   | Lucknow |  34000 |
+|    1414 | Abhinav  | Lucknow | 252555 |
+|    1415 | Abhishek | Lucknow | 252555 |
++---------+----------+---------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select * from users where city LIKE '_U%';
++---------+----------+---------+--------+
+| user_id | name     | city    | salary |
++---------+----------+---------+--------+
+|    1100 | Pankaj   | Lucknow |  34000 |
+|    1414 | Abhinav  | Lucknow | 252555 |
+|    1415 | Abhishek | Lucknow | 252555 |
++---------+----------+---------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select * from users where city LIKE '_U%';
++---------+----------+---------+--------+
+| user_id | name     | city    | salary |
++---------+----------+---------+--------+
+|    1100 | Pankaj   | Lucknow |  34000 |
+|    1414 | Abhinav  | Lucknow | 252555 |
+|    1415 | Abhishek | Lucknow | 252555 |
++---------+----------+---------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select * from usres;
+ERROR 1146 (42S02): Table 'jb2404.usres' doesn't exist
+mysql> select * from users;
++---------+-------------+----------+--------+
+| user_id | name        | city     | salary |
++---------+-------------+----------+--------+
+|    1100 | Pankaj      | Lucknow  |  34000 |
+|    1101 | Vivek Ashok | Delhi    |  50000 |
+|    1102 | Ankit       | Kanpur   |  50000 |
+|    1414 | Abhinav     | Lucknow  | 252555 |
+|    1415 | Abhishek    | Lucknow  | 252555 |
+|    5503 | Subham      | Banglore |   1231 |
++---------+-------------+----------+--------+
+6 rows in set (0.00 sec)
+
+mysql> select * from users ORDER BY name ASC;
++---------+-------------+----------+--------+
+| user_id | name        | city     | salary |
++---------+-------------+----------+--------+
+|    1414 | Abhinav     | Lucknow  | 252555 |
+|    1415 | Abhishek    | Lucknow  | 252555 |
+|    1102 | Ankit       | Kanpur   |  50000 |
+|    1100 | Pankaj      | Lucknow  |  34000 |
+|    5503 | Subham      | Banglore |   1231 |
+|    1101 | Vivek Ashok | Delhi    |  50000 |
++---------+-------------+----------+--------+
+6 rows in set (0.00 sec)
+
+mysql> select * from users ORDER BY name DESC;
++---------+-------------+----------+--------+
+| user_id | name        | city     | salary |
++---------+-------------+----------+--------+
+|    1101 | Vivek Ashok | Delhi    |  50000 |
+|    5503 | Subham      | Banglore |   1231 |
+|    1100 | Pankaj      | Lucknow  |  34000 |
+|    1102 | Ankit       | Kanpur   |  50000 |
+|    1415 | Abhishek    | Lucknow  | 252555 |
+|    1414 | Abhinav     | Lucknow  | 252555 |
++---------+-------------+----------+--------+
+6 rows in set (0.00 sec)
+
+mysql> select * from users ORDER BY salary asc;
++---------+-------------+----------+--------+
+| user_id | name        | city     | salary |
++---------+-------------+----------+--------+
+|    5503 | Subham      | Banglore |   1231 |
+|    1100 | Pankaj      | Lucknow  |  34000 |
+|    1101 | Vivek Ashok | Delhi    |  50000 |
+|    1102 | Ankit       | Kanpur   |  50000 |
+|    1414 | Abhinav     | Lucknow  | 252555 |
+|    1415 | Abhishek    | Lucknow  | 252555 |
++---------+-------------+----------+--------+
+6 rows in set (0.01 sec)
+
+mysql> select * from users ORDER BY salary desc
+    -> ;
++---------+-------------+----------+--------+
+| user_id | name        | city     | salary |
++---------+-------------+----------+--------+
+|    1414 | Abhinav     | Lucknow  | 252555 |
+|    1415 | Abhishek    | Lucknow  | 252555 |
+|    1101 | Vivek Ashok | Delhi    |  50000 |
+|    1102 | Ankit       | Kanpur   |  50000 |
+|    1100 | Pankaj      | Lucknow  |  34000 |
+|    5503 | Subham      | Banglore |   1231 |
++---------+-------------+----------+--------+
+6 rows in set (0.01 sec)
+
+mysql> select * from users ORDER BY salary desc asc;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'asc' at line 1
+mysql> select * from users ORDER BY salary desc name  asc;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'name  asc' at line 1
+mysql> select * from users ORDER BY salary desc ,name  asc;
++---------+-------------+----------+--------+
+| user_id | name        | city     | salary |
++---------+-------------+----------+--------+
+|    1414 | Abhinav     | Lucknow  | 252555 |
+|    1415 | Abhishek    | Lucknow  | 252555 |
+|    1102 | Ankit       | Kanpur   |  50000 |
+|    1101 | Vivek Ashok | Delhi    |  50000 |
+|    1100 | Pankaj      | Lucknow  |  34000 |
+|    5503 | Subham      | Banglore |   1231 |
++---------+-------------+----------+--------+
+6 rows in set (0.00 sec)
+
+mysql> select * from users ORDER BY salary desc ,name  desc;
++---------+-------------+----------+--------+
+| user_id | name        | city     | salary |
++---------+-------------+----------+--------+
+|    1415 | Abhishek    | Lucknow  | 252555 |
+|    1414 | Abhinav     | Lucknow  | 252555 |
+|    1101 | Vivek Ashok | Delhi    |  50000 |
+|    1102 | Ankit       | Kanpur   |  50000 |
+|    1100 | Pankaj      | Lucknow  |  34000 |
+|    5503 | Subham      | Banglore |   1231 |
++---------+-------------+----------+--------+
+6 rows in set (0.01 sec)
+
+mysql> select * from users;
++---------+-------------+----------+--------+
+| user_id | name        | city     | salary |
++---------+-------------+----------+--------+
+|    1100 | Pankaj      | Lucknow  |  34000 |
+|    1101 | Vivek Ashok | Delhi    |  50000 |
+|    1102 | Ankit       | Kanpur   |  50000 |
+|    1414 | Abhinav     | Lucknow  | 252555 |
+|    1415 | Abhishek    | Lucknow  | 252555 |
+|    5503 | Subham      | Banglore |   1231 |
++---------+-------------+----------+--------+
+6 rows in set (0.00 sec)
+
+mysql> select * from users LIMIT 3;
++---------+-------------+---------+--------+
+| user_id | name        | city    | salary |
++---------+-------------+---------+--------+
+|    1100 | Pankaj      | Lucknow |  34000 |
+|    1101 | Vivek Ashok | Delhi   |  50000 |
+|    1102 | Ankit       | Kanpur  |  50000 |
++---------+-------------+---------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select * from users;
++---------+-------------+----------+--------+
+| user_id | name        | city     | salary |
++---------+-------------+----------+--------+
+|    1100 | Pankaj      | Lucknow  |  34000 |
+|    1101 | Vivek Ashok | Delhi    |  50000 |
+|    1102 | Ankit       | Kanpur   |  50000 |
+|    1414 | Abhinav     | Lucknow  | 252555 |
+|    1415 | Abhishek    | Lucknow  | 252555 |
+|    5503 | Subham      | Banglore |   1231 |
++---------+-------------+----------+--------+
+6 rows in set (0.01 sec)
+
+mysql> select * from users LIMIT 3 OFFSET 2;
++---------+----------+---------+--------+
+| user_id | name     | city    | salary |
++---------+----------+---------+--------+
+|    1102 | Ankit    | Kanpur  |  50000 |
+|    1414 | Abhinav  | Lucknow | 252555 |
+|    1415 | Abhishek | Lucknow | 252555 |
++---------+----------+---------+--------+
+3 rows in set (0.00 sec)
+
+mysql> 
