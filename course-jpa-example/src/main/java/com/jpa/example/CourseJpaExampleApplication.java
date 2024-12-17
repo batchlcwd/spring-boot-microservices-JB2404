@@ -34,10 +34,10 @@ public class CourseJpaExampleApplication implements CommandLineRunner {
 //		System.out.println(savedUser.getName());
 //		System.out.println("user saved:");
 
-		List<User> all = userRepository.findAll();
-		all.forEach(user -> {
-			System.out.println(user.getName());
-		});
+//		List<User> all = userRepository.findAll();
+//		all.forEach(user -> {
+//			System.out.println(user.getName());
+//		});
 
 	}
 }
