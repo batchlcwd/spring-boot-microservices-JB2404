@@ -4,6 +4,9 @@ package com.jpa.example.entity;
 import com.jpa.example.dto.UserType;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "jpa_user")
 public class User {
@@ -16,14 +19,17 @@ public class User {
     private String email;
     private int age;
     private boolean isActive;
-
-
-
     @Transient
     private String extraInformation;
-
     @Embedded
-    private  Address address;
+    private Address address;
+
+    //laptop:
+//    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+//    private Laptop laptop;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+    private List<Laptop> laptops = new ArrayList<>();
 
 
     @Enumerated(EnumType.STRING)
@@ -92,5 +98,22 @@ public class User {
 
     public void setAddress(Address address) {
         this.address = address;
+    }
+
+//    public Laptop getLaptop() {
+//        return laptop;
+//    }
+//
+//    public void setLaptop(Laptop laptop) {
+//        this.laptop = laptop;
+//    }
+
+
+    public List<Laptop> getLaptops() {
+        return laptops;
+    }
+
+    public void setLaptops(List<Laptop> laptops) {
+        this.laptops = laptops;
     }
 }
