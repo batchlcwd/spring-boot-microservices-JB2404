@@ -1,19 +1,25 @@
 package com.jpa.example.entity;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name = "jpa_laptops")
 public class Laptop {
 
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "gen")
+    @SequenceGenerator(name = "gen", sequenceName = "user_id_seq")
+    private String id;
+
     private String model;
     private String about;
 
     @ManyToOne(fetch = FetchType.EAGER)
-        @JoinColumn(name = "user_id")
+
+    //@OneToOne(mappedBy = )
+    @JoinColumn(name = "user_id")
     private User user;
 
     //user
