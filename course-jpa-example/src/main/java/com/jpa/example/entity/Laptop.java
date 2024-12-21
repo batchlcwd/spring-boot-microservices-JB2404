@@ -9,9 +9,9 @@ public class Laptop {
 
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "gen")
-    @SequenceGenerator(name = "gen", sequenceName = "user_id_seq")
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @SequenceGenerator(name = "gen", sequenceName = "user_id_seq")
+    private int id;
 
     private String model;
     private String about;

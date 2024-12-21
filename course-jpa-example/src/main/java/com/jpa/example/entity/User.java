@@ -9,7 +9,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "jpa_user")
-public class User {
+public class User extends  AuditableSoftDelete {
 
     @Id
     @Column(name = "jpa_user_id")
@@ -28,7 +28,7 @@ public class User {
 //    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 //    private Laptop laptop;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+    @OneToMany(mappedBy = "user",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Laptop> laptops = new ArrayList<>();
 
 
