@@ -1,6 +1,5 @@
 package com.substring.foodie.service.impl;
 
-import com.substring.foodie.entity.Restaurant;
 import com.substring.foodie.entity.RoleEntity;
 import com.substring.foodie.entity.User;
 import com.substring.foodie.repository.UserRepo;
@@ -55,11 +54,11 @@ public class UserServiceImpl implements UserService {
 
 
         //
-        RoleEntity entity1=new RoleEntity();
+        RoleEntity entity1 = new RoleEntity();
         entity1.setName("ROLE_ADMIN");
 
 
-        RoleEntity entity2=new RoleEntity();
+        RoleEntity entity2 = new RoleEntity();
         entity2.setName("ROLE_GUEST");
 
         //link
@@ -74,8 +73,6 @@ public class UserServiceImpl implements UserService {
         userRepo.save(user);
 
         System.out.println("user saved:");
-
-
 
 
     }

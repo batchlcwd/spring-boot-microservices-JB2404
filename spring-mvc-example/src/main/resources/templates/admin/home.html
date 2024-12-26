@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Admin Page</title>
+</head>
+<body>
+
+<h1  th:text="${title}"></h1>
+<h1>Welcome to admin page</h1>
+<p>This is admin page created by admin </p>
+<button>Click me</button>
+<a href="/page/home">Go to home</a>
+
+<ul th:each="user : ${userList}">
+        <li th:text="${user}"></li>
+</ul>
+
+<h1 th:text="${currentDate}"></h1>
+</body>
+</html>
