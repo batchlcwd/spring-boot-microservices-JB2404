@@ -1,0 +1,1 @@
+<h1>this is auth home view</h1>
