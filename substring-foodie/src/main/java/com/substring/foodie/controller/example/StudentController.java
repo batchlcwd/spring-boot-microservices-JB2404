@@ -1,9 +1,9 @@
-package com.substring.foodie.controller;
+package com.substring.foodie.controller.example;
 
-import com.substring.foodie.playload.Department;
-import com.substring.foodie.playload.DummyDataGenerator;
-import com.substring.foodie.playload.Student;
-import com.substring.foodie.playload.Subject;
+import com.substring.foodie.playload.example.Department;
+import com.substring.foodie.playload.example.DummyDataGenerator;
+import com.substring.foodie.playload.example.Student;
+import com.substring.foodie.playload.example.Subject;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;

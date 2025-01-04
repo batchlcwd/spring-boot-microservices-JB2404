@@ -1,4 +1,4 @@
-package com.substring.foodie.playload;
+package com.substring.foodie.playload.example;
 
 import java.util.List;
 
