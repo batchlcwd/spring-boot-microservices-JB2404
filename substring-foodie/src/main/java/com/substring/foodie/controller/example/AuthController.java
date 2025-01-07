@@ -19,6 +19,10 @@ public class AuthController {
     //    @RequestMapping(value = "/login", method = RequestMethod.GET)
     @GetMapping("/login")
     public Map<String, Object> login(@RequestBody Map<String, Object> data) {
+
+        String test=null;
+        test.length();//null pointer exception ko generate kiya hai
+
         logger.info("login request: {}", data);
         return data;
     }
@@ -54,6 +58,23 @@ public class AuthController {
         return "we got data";
 
     }
+
+
+    //exception handling method: for this controller
+
+//    @ExceptionHandler(NullPointerException.class)
+//    public String handleNullPointerException(NullPointerException ex) {
+//        logger.error(ex.getMessage());
+//        ex.printStackTrace();
+//        return ex.getMessage();
+//    }
+//
+//    @ExceptionHandler(MethodArgumentNotValidException.class)
+//    public String handleMethodArgumentNotValidException(MethodArgumentNotValidException ex) {
+//        logger.error(ex.getMessage());
+//        ex.printStackTrace();
+//        return "your input data not valid !!";
+//    }
 
 
 }

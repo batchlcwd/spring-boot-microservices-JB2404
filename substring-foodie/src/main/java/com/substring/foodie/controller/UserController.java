@@ -24,6 +24,12 @@ public class UserController {
 
     @RequestMapping("/player-list")
     public List<String> players() {
+
+
+        String template = null;
+        template.length();
+
+
         List<String> list = new ArrayList<>();
         list.add("Sachin");
         list.add("MS Dhoni");
