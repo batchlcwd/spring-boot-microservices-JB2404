@@ -1,6 +1,7 @@
 package com.substring.foodie.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.Constraint;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -19,10 +20,13 @@ public class User {
     @Id
     private String id;
 
+    @Column(nullable = false)
     private String name;
 
+    @Column(unique = true, nullable = false)
     private String email;
 
+    @Column(nullable = false)
     private String password;
 
     private String address;
