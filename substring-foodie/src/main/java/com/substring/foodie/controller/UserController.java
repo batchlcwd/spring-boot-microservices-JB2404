@@ -10,8 +10,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 //@Controller
 @RestController
 @RequestMapping("/api/v1/users")
@@ -37,9 +35,9 @@ public class UserController {
     // get all users
     @GetMapping
     public ResponseEntity<Page<UserDto>> findAll(
-            @RequestParam(value = "page", required = false, defaultValue = "0")
-            int page, @RequestParam(value = "size", required = false, defaultValue = "10")
-            int size, @RequestParam(value = "sortBy", required = false, defaultValue = "createdDate") String sortBy,
+            @RequestParam(value = "page", required = false, defaultValue = "0") int page,
+            @RequestParam(value = "size", required = false, defaultValue = "10") int size,
+            @RequestParam(value = "sortBy", required = false, defaultValue = "createdDate") String sortBy,
             @RequestParam(value = "sortDir", required = false, defaultValue = "desc") String sortDir
 
     ) {
@@ -59,6 +57,7 @@ public class UserController {
         return ResponseEntity.ok(userService.getUserById(id));
 
     }
+
 
     //
 //    @RequestMapping("/")

@@ -1,12 +1,11 @@
 package com.substring.foodie.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 @Entity
@@ -20,72 +19,22 @@ public class Restaurant {
 
     private String name;
 
-    private String address;
-
+    @Lob
+    private String description;
     private LocalTime openTime;
-
     private LocalTime closeTime;
-
     private Boolean open = true;
+    private String address;
+    //TODO:
+    private String banner;
+    private LocalDateTime createdDate;
+
+
 
     @ManyToOne
-    private  User user;
+    private User user;
 
-    public String getId() {
-        return id;
-    }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public LocalTime getOpenTime() {
-        return openTime;
-    }
-
-    public void setOpenTime(LocalTime openTime) {
-        this.openTime = openTime;
-    }
-
-    public LocalTime getCloseTime() {
-        return closeTime;
-    }
-
-    public void setCloseTime(LocalTime closeTime) {
-        this.closeTime = closeTime;
-    }
-
-    public Boolean getOpen() {
-        return open;
-    }
-
-    public void setOpen(Boolean open) {
-        this.open = open;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
 
 
 }
