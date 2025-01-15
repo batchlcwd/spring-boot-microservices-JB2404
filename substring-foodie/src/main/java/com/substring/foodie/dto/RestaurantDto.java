@@ -36,7 +36,7 @@ public class RestaurantDto {
 //    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
 //    private String status="";
 
-    @JsonIgnore
+
     private String banner;
 
     //getter method
