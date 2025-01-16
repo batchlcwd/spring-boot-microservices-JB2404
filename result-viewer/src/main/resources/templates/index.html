@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Result Viewer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+<!-- Navbar -->
+<nav class="bg-white shadow-lg">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+            <!-- Logo -->
+            <a href="#" class="text-2xl font-bold text-blue-600">Name Result Viewer</a>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex space-x-8">
+                <a th:href="@{'/'}"  class="text-gray-700 hover:text-blue-600 font-medium">Home</a>
+                <a th:href="@{'/view-result'}"  class="text-gray-700 hover:text-blue-600 font-medium">View Result</a>
+                <a th:href="@{'/admin/add-result'}" class="text-gray-700 hover:text-blue-600 font-medium">Add Result</a>
+                <a th:href="@{'/help'}"  class="text-gray-700 hover:text-blue-600 font-medium">Help</a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <div class="md:hidden">
+                <button id="menu-btn" class="text-gray-700 focus:outline-none">
+                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden">
+            <a th:href="@{'/'}" href="#home" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Home</a>
+            <a href="#view-result" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">View Result</a>
+            <a href="#add-result" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Add Result</a>
+            <a href="#help" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Help</a>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="bg-gradient-to-r from-blue-500 to-purple-600 text-white py-16">
+    <div class="container mx-auto px-6 text-center">
+        <h1 class="text-4xl md:text-5xl font-bold mb-4">Welcome to Name Result Viewer</h1>
+        <p class="text-lg md:text-xl mb-8">Easily search and view results with just a few clicks.</p>
+        <a href="#features"
+           class="bg-white text-blue-600 px-6 py-3 rounded-full font-semibold hover:bg-gray-200 transition">
+            Explore Features
+        </a>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section id="features" class="py-16 bg-gray-100">
+    <div class="container mx-auto px-6">
+        <h2 class="text-3xl font-bold text-center mb-12">Features</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Feature 1 -->
+            <div class="bg-white shadow-lg p-6 rounded-lg text-center">
+                <div class="text-blue-600 text-4xl mb-4">🔍</div>
+                <h3 class="text-xl font-semibold mb-2">Quick Search</h3>
+                <p class="text-gray-600">Find results instantly with our powerful search engine.</p>
+            </div>
+            <!-- Feature 2 -->
+            <div class="bg-white shadow-lg p-6 rounded-lg text-center">
+                <div class="text-purple-600 text-4xl mb-4">📊</div>
+                <h3 class="text-xl font-semibold mb-2">Detailed Insights</h3>
+                <p class="text-gray-600">Get comprehensive details for every result.</p>
+            </div>
+            <!-- Feature 3 -->
+            <div class="bg-white shadow-lg p-6 rounded-lg text-center">
+                <div class="text-green-600 text-4xl mb-4">⚡</div>
+                <h3 class="text-xl font-semibold mb-2">Fast & Reliable</h3>
+                <p class="text-gray-600">Experience lightning-fast performance at any time.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call-to-Action Section -->
+<section class="py-16 bg-blue-600 text-white">
+    <div class="container mx-auto px-6 text-center">
+        <h2 class="text-3xl font-bold mb-4">Ready to Explore?</h2>
+        <p class="text-lg mb-8">Start viewing results now and make your searches effortless.</p>
+        <a href="/start"
+           class="bg-white text-blue-600 px-6 py-3 rounded-full font-semibold hover:bg-gray-200 transition">
+            Get Started
+        </a>
+    </div>
+</section>
+
+<!-- Testimonial Section -->
+<section class="py-16 bg-gray-100">
+    <div class="container mx-auto px-6">
+        <h2 class="text-3xl font-bold text-center mb-12">What Our Users Say</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Testimonial 1 -->
+            <div class="bg-white shadow-lg p-6 rounded-lg">
+                <p class="text-gray-600 mb-4">"This tool has simplified my result searches. It's fast and reliable!"</p>
+                <h3 class="text-lg font-semibold">- John Doe</h3>
+            </div>
+            <!-- Testimonial 2 -->
+            <div class="bg-white shadow-lg p-6 rounded-lg">
+                <p class="text-gray-600 mb-4">"I love the clean design and detailed insights. Highly recommended!"</p>
+                <h3 class="text-lg font-semibold">- Sarah Smith</h3>
+            </div>
+            <!-- Testimonial 3 -->
+            <div class="bg-white shadow-lg p-6 rounded-lg">
+                <p class="text-gray-600 mb-4">"A fantastic tool for anyone who needs quick and accurate results."</p>
+                <h3 class="text-lg font-semibold">- Michael Lee</h3>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="py-6 bg-gray-800 text-center text-white">
+    <p>&copy; 2025 Name Result Viewer. All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>
