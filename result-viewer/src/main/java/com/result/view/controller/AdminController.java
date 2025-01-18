@@ -1,6 +1,7 @@
 package com.result.view.controller;
 
 import com.result.view.dto.StudentForm;
+import com.result.view.entity.Mark;
 import com.result.view.entity.Student;
 import com.result.view.repository.StudentRepo;
 import jakarta.validation.Valid;
@@ -54,6 +55,7 @@ public class AdminController {
             Model model
     ) {
 
+
         if (bindingResult.hasErrors()) {
             List<String> standardOptions = new ArrayList<>();
             standardOptions.add("CLASS 1");
@@ -70,8 +72,19 @@ public class AdminController {
 //        convert student form to student entity
 
         Student student = modelMapper.map(studentForm, Student.class);
+
+        //har marks to attach student
+        List<Mark> updatedList = student.getMarks().stream().map(mark -> {
+            mark.setStudent(student);
+            return mark;
+        }).toList();
+
+        //update student list
+        student.setMarks(updatedList);
+
+
         student.setId(UUID.randomUUID().toString());
-        Student savedStudent = studentRepo.save(student);
+        studentRepo.save(student);
         return "redirect:/admin/add-result?message=Student added successfully ";
 
     }

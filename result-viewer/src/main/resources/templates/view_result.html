@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${student.name}">Marksheet</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 min-h-screen flex items-center justify-center">
+<div class="bg-white shadow-lg rounded-lg p-8 max-w-4xl w-full">
+    <!-- Header Section -->
+    <div class="flex items-center justify-between border-b pb-4 mb-6">
+        <div>
+            <h1 class="text-3xl font-bold text-blue-600">Student Marksheet</h1>
+            <p class="text-gray-600">Academic Year: 2024-25</p>
+        </div>
+        <img src="https://static-00.iconduck.com/assets.00/profile-default-icon-2048x2045-u3j7s5nj.png"
+             alt="Student Photo"
+             class="w-20 h-20 rounded-full border-2 border-blue-600 object-cover"/>
+    </div>
+
+    <!-- Student Details -->
+    <div class="grid grid-cols-2 gap-6">
+        <div>
+            <p><span class="font-semibold text-gray-700">Name:</span> <span th:text="${student.name}">John Doe</span>
+            </p>
+            <p><span class="font-semibold text-gray-700">Roll Number:</span> <span
+                    th:text="${student.rollNumber}">12345</span></p>
+            <p><span class="font-semibold text-gray-700">Email:</span> <span th:text="${student.email}"></span></p>
+        </div>
+        <div>
+            <p><span class="font-semibold text-gray-700">Date of Birth:</span> <span th:text="${student.dateOfBirth}"> 2005-05-15</span>
+            </p>
+            <p><span class="font-semibold text-gray-700">Gender:</span> <span th:text="${student.gender}">Male</span>
+            </p>
+            <p><span class="font-semibold text-gray-700">Father's Name:</span> Mr. <span
+                    th:text="${student.fatherName}"> Doe</span></p>
+        </div>
+    </div>
+    <div class="mt-4">
+        <p><span class="font-semibold text-gray-700">Address:</span> <span th:text="${student.address}">123 Main St, Springfield</span>
+        </p>
+        <p><span class="font-semibold text-gray-700">School:</span> <span th:text="${student.schoolName}">Springfield High School</span>
+        </p>
+        <p><span class="font-semibold text-gray-700">Class:</span> <span th:text="${student.standard}">10th Grade</span>
+        </p>
+    </div>
+
+    <!-- Marks Section -->
+    <div class="mt-8">
+        <h2 class="text-xl font-bold text-gray-700 border-b pb-2 mb-4">Marks Obtained</h2>
+        <table class="table-auto w-full text-left border-collapse">
+            <thead class="bg-blue-600 text-white">
+            <tr>
+                <th class="px-4 py-2">Subject</th>
+                <th class="px-4 py-2">Marks</th>
+                <th class="px-4 py-2">Max Marks</th>
+                <th class="px-4 py-2">Grade</th>
+                <th class="px-4 py-2">Feedback</th>
+            </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-200">
+
+
+            <tr th:each="mark: ${marks}">
+                <td class="px-4 py-2"><span th:text="${mark.subjectName}"></span></td>
+                <td class="px-4 py-2"><span th:text="${mark.marks}"></span></td>
+                <td class="px-4 py-2"><span th:text="${mark.maxMarks}"></span></td>
+                <td class="px-4 py-2 text-green-600 font-bold"><span th:text="${mark.grade}"></span></td>
+                <td class="px-4 py-2"><span th:text="${mark.feedback}"></span></td>
+            </tr>
+
+
+            <!-- Add more rows dynamically -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Summary Section -->
+    <div class="mt-8">
+        <p><span class="font-semibold text-gray-700">Total Marks:</span> <span th:text="${totalMarks}"></span> /<span
+                th:text="${totalMaxMarks}"></span></p>
+        <p><span class="font-semibold text-gray-700">Percentage:</span> <span th:text="${percentage}"></span></p>
+        <p><span class="font-semibold text-gray-700">Result:</span>
+            <span th:text="${passed ? 'Passed':'Fail'}"></span>
+        </p>
+    </div>
+
+    <!-- Footer -->
+    <div class="mt-8 text-center">
+        <p class="text-gray-500 text-sm"><span th:text="${currentDate}"></span></p>
+    </div>
+    <div class="flex justify-center gap-3 mt-3">
+        <a th:href="@{'/view-result'}" type="button"
+           class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">View
+            Another</a>
+        <button onclick="printResult()" type="button"
+                class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">
+            Print Result
+        </button>
+
+    </div>
+</div>
+<script>
+    function printResult() {
+       window.print()
+    }
+</script>
+</body>
+</html>

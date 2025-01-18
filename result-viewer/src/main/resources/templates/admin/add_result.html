@@ -190,34 +190,10 @@
         </div>
 
         <!--        subjects and marks-->
-        <div >
+        <div>
 
             <div id="marks_container">
 
-                <div class=" flex gap-4 rounded  border px-3 py-4">
-
-                    <div class="flex flex-col">
-                        <label>Subject</label>
-                        <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                               type="text" placeholder="Enter subject">
-                    </div>
-                    <div class="flex flex-col">
-                        <label>Marks</label>
-                        <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                               type="text" placeholder="Enter Marks">
-                    </div>
-                    <div class="flex flex-col">
-                        <label>Grade</label>
-                        <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                               type="text" placeholder="Enter Grade">
-                    </div>
-                    <div class="flex flex-col">
-                        <label>Feedback</label>
-                        <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                               type="text" placeholder="Enter Feedback">
-                    </div>
-
-                </div>
 
             </div>
 
@@ -252,33 +228,50 @@
 </div>
 
 <script>
-    function  addMarksRow(){
-        const container=document.getElementById('marks_container')
 
-        container.innerHTML=container.innerHTML+ ` <div class=" flex gap-4 rounded  border px-3 py-4">
+
+    let index = 0;
+
+
+    function addMarksRow() {
+
+        const container = document.getElementById('marks_container')
+
+        container.insertAdjacentHTML('beforeend',` <div class=" flex gap-4 rounded  border px-3 py-4">
 
                     <div class="flex flex-col">
                         <label>Subject</label>
-                        <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                        <input name="marks[${index}].subjectName" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                                type="text" placeholder="Enter subject">
                     </div>
                     <div class="flex flex-col">
                         <label>Marks</label>
-                        <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                        <input name="marks[${index}].marks" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                                type="text" placeholder="Enter Marks">
                     </div>
+
+                      <div class="flex flex-col">
+                        <label>Max Marks</label>
+                        <input name="marks[${index}].maxMarks" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                               type="text" placeholder="Enter  Max Marks">
+                    </div>
+
+
                     <div class="flex flex-col">
                         <label>Grade</label>
-                        <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                        <input name="marks[${index}].grade" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                                type="text" placeholder="Enter Grade">
                     </div>
                     <div class="flex flex-col">
                         <label>Feedback</label>
-                        <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                        <input name="marks[${index}].feedback" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-full focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                                type="text" placeholder="Enter Feedback">
                     </div>
 
-                </div>`
+                </div>`)
+
+
+        index++;
 
     }
 </script>
