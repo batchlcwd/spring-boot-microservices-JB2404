@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-purple-500 to-indigo-500 flex items-center justify-center min-h-screen">
+<div class="bg-white rounded-lg shadow-lg p-8 w-full max-w-md">
+    <div class="flex flex-col items-center mb-6">
+        <!-- Icon -->
+        <div class="bg-indigo-500 p-3 rounded-full">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10 2a6 6 0 00-6 6v1a3 3 0 00-3 3v5a3 3 0 003 3h12a3 3 0 003-3v-5a3 3 0 00-3-3V8a6 6 0 00-6-6zM8 10a2 2 0 114 0 2 2 0 01-4 0zm8 5a2 2 0 00-2-2H6a2 2 0 000 4h8a2 2 0 002-2z" clip-rule="evenodd" />
+            </svg>
+        </div>
+        <!-- Heading -->
+        <h1 class="text-2xl font-bold text-gray-800 mt-4">Welcome Back</h1>
+        <!-- Subheading -->
+        <p class="text-gray-500 mt-1">Sign in to your account</p>
+    </div>
+    <form th:action="@{'/do-login'}" method="post">
+        <!-- Username Field -->
+        <div class="mb-4">
+            <label for="username" class="block text-gray-700 font-medium mb-2">Username</label>
+            <input type="text" id="username" name="username"
+                   class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
+        </div>
+        <!-- Password Field -->
+        <div class="mb-6">
+            <label for="password" class="block text-gray-700 font-medium mb-2">Password</label>
+            <input type="password" id="password" name="password"
+                   class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
+        </div>
+        <!-- Submit Button -->
+        <button type="submit"
+                class="w-full bg-indigo-500 text-white py-2 px-4 rounded-lg hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+            Sign In
+        </button>
+    </form>
+    <!-- Footer -->
+    <p class="text-center text-sm text-gray-500 mt-6">
+        Don't have an account? <a href="#" class="text-indigo-500 hover:underline">Sign up</a>
+    </p>
+</div>
+</body>
+</html>
