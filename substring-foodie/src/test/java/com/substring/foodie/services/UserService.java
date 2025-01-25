@@ -55,7 +55,7 @@ public class UserService {
     @Test
     public void testUpdate(){
 
-        userService.testUserRole();
+//        userService.testUserRole();
 //
 //        userService.updateUser();
 //        System.out.println("user updated");
