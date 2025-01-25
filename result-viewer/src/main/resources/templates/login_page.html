@@ -12,15 +12,22 @@
         <!-- Icon -->
         <div class="bg-indigo-500 p-3 rounded-full">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M10 2a6 6 0 00-6 6v1a3 3 0 00-3 3v5a3 3 0 003 3h12a3 3 0 003-3v-5a3 3 0 00-3-3V8a6 6 0 00-6-6zM8 10a2 2 0 114 0 2 2 0 01-4 0zm8 5a2 2 0 00-2-2H6a2 2 0 000 4h8a2 2 0 002-2z" clip-rule="evenodd" />
+                <path fill-rule="evenodd"
+                      d="M10 2a6 6 0 00-6 6v1a3 3 0 00-3 3v5a3 3 0 003 3h12a3 3 0 003-3v-5a3 3 0 00-3-3V8a6 6 0 00-6-6zM8 10a2 2 0 114 0 2 2 0 01-4 0zm8 5a2 2 0 00-2-2H6a2 2 0 000 4h8a2 2 0 002-2z"
+                      clip-rule="evenodd"/>
             </svg>
         </div>
         <!-- Heading -->
         <h1 class="text-2xl font-bold text-gray-800 mt-4">Welcome Back</h1>
         <!-- Subheading -->
         <p class="text-gray-500 mt-1">Sign in to your account</p>
+
+
+        <p class="text-green-500 mt-3" th:if="${param.logout}">Logout Successfully</p>
+        <p class="text-red-500 mt-3" th:if="${param.error}">Invalid Login Detail !!</p>
     </div>
     <form th:action="@{'/do-login'}" method="post">
+
         <!-- Username Field -->
         <div class="mb-4">
             <label for="username" class="block text-gray-700 font-medium mb-2">Username</label>

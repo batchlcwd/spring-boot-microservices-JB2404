@@ -1,8 +1,6 @@
 package com.substring.foodie.controller;
 
-import com.substring.foodie.dto.FileData;
 import com.substring.foodie.dto.RestaurantDto;
-import com.substring.foodie.service.FileService;
 import com.substring.foodie.service.RestaurantService;
 
 import org.slf4j.Logger;
@@ -14,7 +12,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +20,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.lang.management.PlatformLoggingMXBean;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 

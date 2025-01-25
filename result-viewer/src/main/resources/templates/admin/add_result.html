@@ -17,11 +17,18 @@
             <a href="#" class="text-2xl font-bold text-blue-600">Name Result Viewer</a>
 
             <!-- Desktop Menu -->
-            <div class="hidden md:flex space-x-8">
+            <div class="hidden md:flex space-x-8  flex items-center ">
                 <a th:href="@{'/'}" class="text-gray-700 hover:text-blue-600 font-medium">Home</a>
                 <a th:href="@{'/view-result'}" class="text-gray-700 hover:text-blue-600 font-medium">View Result</a>
                 <a th:href="@{'/admin/add-result'}" class="text-gray-700 hover:text-blue-600 font-medium">Add Result</a>
-                <a th:href="@{'/help'}" class="text-gray-700 hover:text-blue-600 font-medium">Help</a>
+                <a  class="text-gray-700 hover:text-blue-600 font-medium" th:text="${name}"></a>
+
+               <div>
+                   <form
+                           th:action="@{'/user-logout'}" method="post">
+                       <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">Logout</button>
+                   </form>
+               </div>
             </div>
 
             <!-- Mobile Menu Button -->
