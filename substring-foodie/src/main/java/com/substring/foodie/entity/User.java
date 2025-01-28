@@ -42,17 +42,21 @@ public class User {
 
     private LocalDate createdDate;
 
+    private  boolean enabled=true;
+
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Restaurant> restaurants = new ArrayList<>();
 
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "user_role",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
     private List<RoleEntity> roleEntities = new ArrayList<>();
+
+
 
     @PrePersist
     public void preSave() {

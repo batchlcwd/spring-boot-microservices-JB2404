@@ -13,8 +13,10 @@ public class RoleEntity {
     private  int id;
 
     private  String name;
+
     @ManyToMany(mappedBy = "roleEntities")
     private List<User> users=new ArrayList<>();
+
 
     public int getId() {
         return id;

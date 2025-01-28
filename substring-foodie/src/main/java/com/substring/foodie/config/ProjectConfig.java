@@ -17,14 +17,20 @@ public class ProjectConfig {
     }
 
 
-    @Bean
-    public UserDetailsService userDetailsService() {
 
-        UserDetails user1 =
-                User.builder().username("user").password("{noop}user").build();
-        InMemoryUserDetailsManager inMemoryUserDetailsManager = new InMemoryUserDetailsManager(user1);
-        return inMemoryUserDetailsManager;
-    }
+
+//    @Bean
+//    public UserDetailsService userDetailsService() {
+//
+//        UserDetails user1 = User.builder().username("user").password("{noop}user").build();
+//
+//        UserDetails admin = User.builder().username("admin").password("{noop}admin").build();
+//
+//        InMemoryUserDetailsManager inMemoryUserDetailsManager = new InMemoryUserDetailsManager(user1, admin);
+//
+//
+//        return inMemoryUserDetailsManager;
+//    }
 
 
 }

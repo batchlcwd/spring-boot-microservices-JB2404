@@ -1,20 +1,22 @@
 package com.substring.foodie.service.impl;
 
+import com.substring.foodie.config.AppConstants;
 import com.substring.foodie.dto.UserDto;
+import com.substring.foodie.entity.RoleEntity;
 import com.substring.foodie.entity.User;
 import com.substring.foodie.exception.ResourceNotFoundException;
+import com.substring.foodie.repository.RoleRepo;
 import com.substring.foodie.repository.UserRepo;
 import com.substring.foodie.service.UserService;
 import com.substring.foodie.utils.Helper;
-import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.modelmapper.ModelMapper;
 import org.springframework.core.io.support.ResourcePatternResolver;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.UUID;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -23,10 +25,18 @@ public class UserServiceImpl implements UserService {
     private final ResourcePatternResolver resourcePatternResolver;
     private UserRepo userRepo;
 
+    private PasswordEncoder passwordEncoder;
 
-    public UserServiceImpl(UserRepo userRepo, ResourcePatternResolver resourcePatternResolver) {
-        this.userRepo = userRepo;
+    private RoleRepo roleRepo;
+
+    private ModelMapper modelMapper;
+
+    public UserServiceImpl(ResourcePatternResolver resourcePatternResolver, UserRepo userRepo, PasswordEncoder passwordEncoder, RoleRepo roleRepo, ModelMapper modelMapper) {
         this.resourcePatternResolver = resourcePatternResolver;
+        this.userRepo = userRepo;
+        this.passwordEncoder = passwordEncoder;
+        this.roleRepo = roleRepo;
+        this.modelMapper = modelMapper;
     }
 
     @Override
@@ -35,8 +45,15 @@ public class UserServiceImpl implements UserService {
         userDto.setId(Helper.generateRandomId());
         User user = convertUserDtoToUser(userDto);
         //save the user to database
+        //we are encoding password :
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        // guest : role
+        RoleEntity roleGuest = roleRepo.findByName(AppConstants.getRoleGuest());
+        user.getRoleEntities().add(roleGuest);
         User savedUser = userRepo.save(user);
         return convertUserDtoToUserDto(savedUser);
+
+
     }
 
     //TODO:
@@ -47,9 +64,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Page<UserDto> getAll(Pageable pageable) {
-         Page<User> userPage = userRepo.findAll(pageable);
+        Page<User> userPage = userRepo.findAll(pageable);
 
-         //return after converting to Page<UserDto>
+        //return after converting to Page<UserDto>
         return userPage.map(user -> convertUserDtoToUserDto(user));
 
 
@@ -86,33 +103,34 @@ public class UserServiceImpl implements UserService {
         userRepo.delete(user);
     }
 
-//   TODO::
+    //   TODO::
     @Override
     public List<UserDto> searchUserName(String keyword) {
         return List.of();
     }
 
     private User convertUserDtoToUser(UserDto userDto) {
-        User user = new User();
-        user.setId(userDto.getId());
-        user.setName(userDto.getName());
-        user.setEmail(userDto.getEmail());
-        user.setPassword(userDto.getPassword());
-        user.setPhoneNumber(userDto.getPhoneNumber());
-        user.setAddress(userDto.getAddress());
+//        User user = new User();
+//        user.setId(userDto.getId());
+//        user.setName(userDto.getName());
+//        user.setEmail(userDto.getEmail());
+//        user.setPassword(userDto.getPassword());
+//        user.setPhoneNumber(userDto.getPhoneNumber());
+//        user.setAddress(userDto.getAddress());
 
-        return user;
+        return modelMapper.map(userDto, User.class);
     }
 
     private UserDto convertUserDtoToUserDto(User user) {
-        UserDto userDto = new UserDto();
-        userDto.setId(user.getId());
-        userDto.setName(user.getName());
-        userDto.setEmail(user.getEmail());
-        userDto.setPassword(user.getPassword());
-        userDto.setPhoneNumber(user.getPhoneNumber());
-        userDto.setAddress(user.getAddress());
-        return userDto;
+//        UserDto userDto = new UserDto();
+//        userDto.setId(user.getId());
+//        userDto.setName(user.getName());
+//        userDto.setEmail(user.getEmail());
+//        userDto.setPassword(user.getPassword());
+//        userDto.setPhoneNumber(user.getPhoneNumber());
+//        userDto.setAddress(user.getAddress());
+//        return userDto;
+        return modelMapper.map(user, UserDto.class);
 
     }
 
