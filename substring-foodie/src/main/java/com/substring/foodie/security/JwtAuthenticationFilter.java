@@ -36,7 +36,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             //sab thik thak hai.
             String token = authorization.substring(7);
 
-            if (jwtService.validateToken(token)) {
+            if (jwtService.validateToken(token) && jwtService.isAccessToken(token)) {
 
                 // authentication bata sakte hai.
                 String username = jwtService.getUsername(token);

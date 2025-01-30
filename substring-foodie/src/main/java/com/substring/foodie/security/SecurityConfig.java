@@ -35,7 +35,7 @@ public class SecurityConfig {
         http.csrf(e -> e.disable())
                 .authorizeHttpRequests(request ->
 
-                        request.requestMatchers("/api/v1/auth/login").permitAll().
+                        request.requestMatchers("/api/v1/auth/login","/api/v1/auth/refresh-token").permitAll().
                                 requestMatchers(HttpMethod.POST, "/api/v1/users").permitAll().
                                 requestMatchers(HttpMethod.DELETE, "/api/v1/users/**", "api/v1/restaurants/**").hasRole(AppConstants.ROLE_ADMIN)
                                 .requestMatchers(HttpMethod.POST, "/api/v1/restaurants/**").hasRole(AppConstants.ROLE_ADMIN)
