@@ -1,0 +1,57 @@
+# mysql,phpmyadmin,postgress, pgadmin, mongo and mongo-express
+
+version: '3.8'
+
+services: 
+
+
+
+# PostgreSQL Service
+  postgres-db:
+    image: postgres:13
+    container_name: postgres-db
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: user123
+      POSTGRES_DB: restaurantdb
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+
+  # pgAdmin for PostgreSQL
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "8082:80"
+    depends_on:
+      - postgres-db
+
+  # MongoDB Service
+  mongo:
+    image: mongo:latest
+    container_name: mongo
+    ports:
+      - "27017:27017"    
+    volumes:
+      - ./mongo-data:/data/db
+
+  # Mongo Express for MongoDB
+  mongo-express:
+    image: mongo-express:latest
+    container_name: mongo-express
+    ports:
+      - "8083:8081"
+    environment:        
+      ME_CONFIG_MONGODB_SERVER: mongo
+      # MONGO_INITDB_DATABASE: videodb
+    depends_on:
+      - mongo
+
+volumes:
+  postgres-data:
+  mongo-data:

@@ -1,50 +1,97 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Contact Us</title>
     <script src="https://cdn.tailwindcss.com"></script>
-
-</head>
-<body>
-<!-- Navbar -->
-<nav class="bg-white shadow-lg">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="bg-white shadow-lg">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center h-16">
-            <!-- Logo -->
-            <a href="#" class="text-2xl font-bold text-blue-600">Name Result Viewer</a>
+          <!-- Logo -->
+          <a href="#" class="text-2xl font-bold text-blue-600"
+            >Name Result Viewer</a
+          >
 
-            <!-- Desktop Menu -->
-            <div class="hidden md:flex space-x-8">
-                <a th:href="@{'/'}"  class="text-gray-700 hover:text-blue-600 font-medium">Home</a>
-                <a th:href="@{'/view-result'}"  class="text-gray-700 hover:text-blue-600 font-medium">View Result</a>
-                <a th:href="@{'/admin/add-result'}" class="text-gray-700 hover:text-blue-600 font-medium">Add Result</a>
-                <a th:href="@{'/help'}"  class="text-gray-700 hover:text-blue-600 font-medium">Help</a>
-            </div>
+          <!-- Desktop Menu -->
+          <div class="hidden md:flex space-x-8">
+            <a
+              th:href="@{'/'}"
+              class="text-gray-700 hover:text-blue-600 font-medium"
+              >Home</a
+            >
+            <a
+              th:href="@{'/view-result'}"
+              class="text-gray-700 hover:text-blue-600 font-medium"
+              >View Result</a
+            >
+            <a
+              th:href="@{'/admin/add-result'}"
+              class="text-gray-700 hover:text-blue-600 font-medium"
+              >Add Result</a
+            >
+            <a
+              th:href="@{'/help'}"
+              class="text-gray-700 hover:text-blue-600 font-medium"
+              >Help</a
+            >
+          </div>
 
-            <!-- Mobile Menu Button -->
-            <div class="md:hidden">
-                <button id="menu-btn" class="text-gray-700 focus:outline-none">
-                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
-                    </svg>
-                </button>
-            </div>
+          <!-- Mobile Menu Button -->
+          <div class="md:hidden">
+            <button id="menu-btn" class="text-gray-700 focus:outline-none">
+              <svg
+                class="h-6 w-6"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16m-7 6h7"
+                />
+              </svg>
+            </button>
+          </div>
         </div>
 
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden md:hidden">
-            <a th:href="@{'/'}" href="#home" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Home</a>
-            <a href="#view-result" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">View Result</a>
-            <a href="#add-result" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Add Result</a>
-            <a href="#help" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Help</a>
+          <a
+            th:href="@{'/'}"
+            href="#home"
+            class="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+            >Home</a
+          >
+          <a
+            href="#view-result"
+            class="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+            >View Result</a
+          >
+          <a
+            href="#add-result"
+            class="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+            >Add Result</a
+          >
+          <a
+            href="#help"
+            class="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+            >Help</a
+          >
         </div>
-    </div>
-</nav>
+      </div>
+    </nav>
 
-
-</body>
+  
+  </body>
 </html>
