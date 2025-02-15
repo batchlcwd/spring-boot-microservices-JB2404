@@ -1,0 +1,883 @@
+{
+	"info": {
+		"_postman_id": "7e2debcf-59d8-4ce7-92f5-7f23550a56ee",
+		"name": "jb2024",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "6437482"
+	},
+	"item": [
+		{
+			"name": "substring_foodie",
+			"item": [
+				{
+					"name": "users",
+					"item": [
+						{
+							"name": "add user",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\":\"Sayantan g\",\n    \"email\":\"sayantan@gmail.com\",\n    \"password\":\"xyz\",\n    \"phoneNumber\":\"23152525\",\n    \"address\":\"25/235 Viram Section 12 Noida INDIA\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/v1/users",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"users"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get all",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "dsgfadsfavfwer",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\":\"Madan Deo\",\n    \"email\":\"madan@gmail.com\",\n    \"password\":\"abc\",\n    \"phoneNumber\":\"23152525\",\n    \"address\":\"25/235 Viram Section 12 Noida INDIA\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/v1/users?size=10&page=0&sortBy=name&sortDir=asc",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"users"
+									],
+									"query": [
+										{
+											"key": "size",
+											"value": "10"
+										},
+										{
+											"key": "page",
+											"value": "0"
+										},
+										{
+											"key": "sortBy",
+											"value": "name"
+										},
+										{
+											"key": "sortDir",
+											"value": "asc"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get single",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\":\"Madan Deo\",\n    \"email\":\"madan@gmail.com\",\n    \"password\":\"abc\",\n    \"phoneNumber\":\"23152525\",\n    \"address\":\"25/235 Viram Section 12 Noida INDIA\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/v1/users/6efaacb5-bf13-41f0-8c7e-54551b9e92d7",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"users",
+										"6efaacb5-bf13-41f0-8c7e-54551b9e92d7"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "login",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\":\"sayantan@gmail.com\",\n    \"password\":\"xyz\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/v1/auth/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "refreshtoken",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"refreshToken\":\"eyJ0eXAiOiJyZWZyZXNoX3Rva2VuIiwic3ViIjoic2F5YW50YW5AZ21haWwuY29tIiwiaWF0IjoxNzM4MjU2Njg1LCJleHAiOjE3MzgzNDMwODV9.bWx_iaCsTWHNPdUfbjqhH1t2P5uNtdFtD8MTjCSwpek\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/v1/auth/refresh-token",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"refresh-token"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "restaurant",
+					"item": [
+						{
+							"name": "add",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "banner",
+											"type": "file",
+											"src": "/Users/durgesh_mac/Downloads/day 1.png"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/v1/restaurants",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"restaurants"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzYXlhbnRhbkBnbWFpbC5jb20iLCJpYXQiOjE3MzgwODUwODQsImV4cCI6MTczODA4NTk4NH0.j_qiLfa015THjOvIIFatHkVGeQxWqhCFNrjmsMOAHw4",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \n            \"name\": \"Varista LKO\",\n            \"description\": \"This is Varista\",\n            \"openTime\": null,\n            \"closeTime\": null,\n            \"open\": false,\n            \"address\": \"Delhi\",\n            \"createdDate\": null,\n            \"banner\": \"1736959988463.png\",\n            \"imageUrl\": \"http://localhost:8080/images/1736959988463.png\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/v1/restaurants/04927494-a8e8-4061-b784-5bc3da00b041",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"restaurants",
+										"04927494-a8e8-4061-b784-5bc3da00b041"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "banner upload",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwcml0YW1AZ21haWwuY29tIiwiaWF0IjoxNzM4MDgyNjAyLCJleHAiOjE3MzgwODM1MDJ9.gD7jYOtLG0lDlILGUROHEMsBdZX6eEuq1OXSgZ18QXI",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "banner",
+											"type": "file",
+											"src": "/Users/durgesh_mac/Downloads/day 1.png"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/v1/restaurants/upload-banner/6bb8dfd4-89c8-45e5-828f-4eb7a73bff16",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"restaurants",
+										"upload-banner",
+										"6bb8dfd4-89c8-45e5-828f-4eb7a73bff16"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Serving image",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "banner",
+											"type": "file",
+											"src": "/Users/durgesh_mac/Downloads/GMT20241219-155422_RecordingnewChat (1).txt"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/v1/restaurants/6bb8dfd4-89c8-45e5-828f-4eb7a73bff16/banner",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"restaurants",
+										"6bb8dfd4-89c8-45e5-828f-4eb7a73bff16",
+										"banner"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get all",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/v1/restaurants",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"restaurants"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "http://localhost:8080/api/v1/restaurants/6bb8dfd4-89c8-45e5-828f-4eb7a73bff16/banner",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/v1/restaurants/6bb8dfd4-89c8-45e5-828f-4eb7a73bff16/banner",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"restaurants",
+										"6bb8dfd4-89c8-45e5-828f-4eb7a73bff16",
+										"banner"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "http://localhost:8080/api/v1/users",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "tokenName",
+									"value": "token2",
+									"type": "string"
+								},
+								{
+									"key": "client_authentication",
+									"value": "body",
+									"type": "string"
+								},
+								{
+									"key": "state",
+									"value": "agfaohfafoaisfaddgasg",
+									"type": "string"
+								},
+								{
+									"key": "scope",
+									"value": "openid email profile",
+									"type": "string"
+								},
+								{
+									"key": "clientSecret",
+									"value": "zsS0ZQsFacEyOIS3cjS1qRmPsgWqdesG",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "substring_foodie_1",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "http://localhost:8086/realms/org1/protocol/openid-connect/token",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "http://localhost:8086/realms/org1/protocol/openid-connect/auth",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
+									"type": "string"
+								},
+								{
+									"key": "useBrowser",
+									"value": true,
+									"type": "boolean"
+								},
+								{
+									"key": "challengeAlgorithm",
+									"value": "S256",
+									"type": "string"
+								},
+								{
+									"key": "redirect_uri",
+									"value": "*",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "durgesh",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "durgesh305",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\":\"2352\",\n    \"username\":\"durgesh\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/api/v1/users",
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
+									"type": "string"
+								},
+								{
+									"key": "client_authentication",
+									"value": "body",
+									"type": "string"
+								},
+								{
+									"key": "state",
+									"value": "agfaohfafoaisfaddgasg",
+									"type": "string"
+								},
+								{
+									"key": "scope",
+									"value": "openid email profile",
+									"type": "string"
+								},
+								{
+									"key": "clientSecret",
+									"value": "zsS0ZQsFacEyOIS3cjS1qRmPsgWqdesG",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "substring_foodie_1",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "http://localhost:8086/realms/org1/protocol/openid-connect/token",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "http://localhost:8086/realms/org1/protocol/openid-connect/auth",
+									"type": "string"
+								},
+								{
+									"key": "tokenName",
+									"value": "token1",
+									"type": "string"
+								},
+								{
+									"key": "useBrowser",
+									"value": true,
+									"type": "boolean"
+								},
+								{
+									"key": "challengeAlgorithm",
+									"value": "S256",
+									"type": "string"
+								},
+								{
+									"key": "redirect_uri",
+									"value": "*",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "durgesh",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "durgesh305",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\":\"durgesh\",\n    \"id\":3124\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "boot_mvc",
+			"item": [
+				{
+					"name": "json-data-to-server",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "abcawgg",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"Abc@12\",\n    \"age\":45,\n    \"email\":\"vikash@gmail.com\",\n    \"password\":\"12\",\n    \"gender\":\"femalesdvsg\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/auth/signup",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "json-data-to-server1",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\":\"abc@gmail.com\",\n    \"password\":\"abc\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/users/player-list",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/users/player-list",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"player-list"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "microservices",
+			"item": [
+				{
+					"name": "restaurant",
+					"item": [
+						{
+							"name": "add",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\n  \"name\": \"Cafe Delight\",\n  \"address\": \"654 Maple St, Seattle, WA\",\n  \"phone\": \"777-888-9999\",\n  \"pictures\": [\n    \"https://example.com/cafe1.jpg\",\n    \"https://example.com/cafe2.jpg\"\n  ],\n  \"open\": true,\n  \"openTime\": \"07:00:00\",\n  \"closeTime\": \"19:00:00\",\n  \"aboutRestaurant\": \"A charming cafe offering a variety of coffee, pastries, and light meals. Perfect for a relaxing break.\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9091/api/v1/restaurants",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9091",
+									"path": [
+										"api",
+										"v1",
+										"restaurants"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get all",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\n  \"name\": \"Cafe Delight\",\n  \"address\": \"654 Maple St, Seattle, WA\",\n  \"phone\": \"777-888-9999\",\n  \"pictures\": [\n    \"https://example.com/cafe1.jpg\",\n    \"https://example.com/cafe2.jpg\"\n  ],\n  \"open\": true,\n  \"openTime\": \"07:00:00\",\n  \"closeTime\": \"19:00:00\",\n  \"aboutRestaurant\": \"A charming cafe offering a variety of coffee, pastries, and light meals. Perfect for a relaxing break.\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9091/api/v1/restaurants",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9091",
+									"path": [
+										"api",
+										"v1",
+										"restaurants"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get single",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\n  \"name\": \"Cafe Delight\",\n  \"address\": \"654 Maple St, Seattle, WA\",\n  \"phone\": \"777-888-9999\",\n  \"pictures\": [\n    \"https://example.com/cafe1.jpg\",\n    \"https://example.com/cafe2.jpg\"\n  ],\n  \"open\": true,\n  \"openTime\": \"07:00:00\",\n  \"closeTime\": \"19:00:00\",\n  \"aboutRestaurant\": \"A charming cafe offering a variety of coffee, pastries, and light meals. Perfect for a relaxing break.\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9091/api/v1/restaurants/17064a7f-0660-4527-ba7b-8fe0b74d8d56",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9091",
+									"path": [
+										"api",
+										"v1",
+										"restaurants",
+										"17064a7f-0660-4527-ba7b-8fe0b74d8d56"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get name",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\n  \"name\": \"Cafe Delight\",\n  \"address\": \"654 Maple St, Seattle, WA\",\n  \"phone\": \"777-888-9999\",\n  \"pictures\": [\n    \"https://example.com/cafe1.jpg\",\n    \"https://example.com/cafe2.jpg\"\n  ],\n  \"open\": true,\n  \"openTime\": \"07:00:00\",\n  \"closeTime\": \"19:00:00\",\n  \"aboutRestaurant\": \"A charming cafe offering a variety of coffee, pastries, and light meals. Perfect for a relaxing break.\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9091/api/v1/restaurants/name/Sushi Haven",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9091",
+									"path": [
+										"api",
+										"v1",
+										"restaurants",
+										"name",
+										"Sushi Haven"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\n  \"name\": \"Cafe Delight\",\n  \"address\": \"654 Maple St, Seattle, WA\",\n  \"phone\": \"777-888-9999\",\n  \"pictures\": [\n    \"https://example.com/cafe1.jpg\",\n    \"https://example.com/cafe2.jpg\"\n  ],\n  \"open\": true,\n  \"openTime\": \"07:00:00\",\n  \"closeTime\": \"19:00:00\",\n  \"aboutRestaurant\": \"A charming cafe offering a variety of coffee, pastries, and light meals. Perfect for a relaxing break.\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:9091/api/v1/restaurants/8a271a94-c8d1-45b4-b015-1ed4bdef7ea0",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "9091",
+									"path": [
+										"api",
+										"v1",
+										"restaurants",
+										"8a271a94-c8d1-45b4-b015-1ed4bdef7ea0"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}
