@@ -1,8 +1,6 @@
 package com.substring.foodie.food.controller;
 
-import com.substring.foodie.food.dto.FoodCategoryDTO;
 import com.substring.foodie.food.dto.FoodItemDTO;
-import com.substring.foodie.food.service.FoodCategoryService;
 import com.substring.foodie.food.service.FoodItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

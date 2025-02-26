@@ -46,7 +46,7 @@ public class FoodItemService {
         FoodItem foodItem = foodItemRepository.findById(id).orElseThrow(() -> new RuntimeException("Could not find food item with id: " + id));
         // call karenge restaurant service koo to get restaurant data
         // restaurant service ka url
-//        String restautantServiceUrl = "http://localhost:9091/api/v1/restaurants/" + foodItem.getRestaurantId();
+//        String restautantServiceUrl = "lb://RESTAURANT-SERVICE/api/v1/restaurants/" + foodItem.getRestaurantId();
         //calling another services
 //        RestaurantDto restaurantDto = restTemplate.getForObject(restautantServiceUrl, RestaurantDto.class);
         //get
