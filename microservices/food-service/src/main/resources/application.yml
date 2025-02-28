@@ -1,6 +1,6 @@
-server:
-  port: 9092
 spring:
+  profiles:
+    active: prod
   application:
     name: "food-service"
   datasource:
@@ -25,3 +25,11 @@ eureka:
 
 
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  info:
+    env:
+      enabled: true
