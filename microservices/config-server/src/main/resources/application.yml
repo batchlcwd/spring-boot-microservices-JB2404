@@ -1,0 +1,35 @@
+spring:
+  application:
+    name: "config-server"
+
+
+  profiles:
+    #    configurations source = git
+    active: git
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/batchlcwd/substring-foodie-config.git
+          default-label: main
+          timeout: 5
+          clone-on-start: true
+          force-pull: true
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+server:
+  port: 9096
+
+
+encrypt:
+  key: "adwgagvsargvdastbvasfaggsryresh"
