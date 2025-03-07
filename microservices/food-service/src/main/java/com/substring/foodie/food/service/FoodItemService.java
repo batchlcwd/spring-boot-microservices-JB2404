@@ -54,10 +54,10 @@ public class FoodItemService {
         //put
 
         //calling restaurant service to get restaurant by id
-//        RestaurantDto restaurantDto = restaurantService.getById(foodItem.getRestaurantId());
+        RestaurantDto restaurantDto = restaurantService.getById(foodItem.getRestaurantId());
 
 
-        RestaurantDto restaurantDto = restWebClientService.getById(foodItem.getRestaurantId());
+//        RestaurantDto restaurantDto = restWebClientService.getById(foodItem.getRestaurantId());
 
         FoodItemDTO foodItemDTO = convertToDTO(foodItem);
         foodItemDTO.setRestaurant(restaurantDto);

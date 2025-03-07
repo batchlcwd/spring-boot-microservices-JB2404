@@ -3,28 +3,28 @@ spring:
     name: api-gateway
   cloud:
     gateway:
-#      routes:
-#        - id: food-service
-#          uri: lb://FOOD-SERVICE
-#          predicates:
-#            - Path=/foods/**
-#          filters:
-#            - RewritePath=/foods/?(?<remaining>.*) , /$\{remaining}
-#
-#        - id: restaurant-service
-#          uri: lb://restaurant-service
-#          predicates:
-#            - Path=/restaurants/**
-#          filters:
-#            - RewritePath=/restaurants/?(?<remaining>.*) , /$\{remaining}
-
-
-
-
+      #      routes:
+      #        - id: food-service
+      #          uri: lb://FOOD-SERVICE
+      #          predicates:
+      #            - Path=/foods/**
+      #          filters:
+      #            - RewritePath=/foods/?(?<remaining>.*) , /$\{remaining}
+      #            -CircuitBreaker=myCircuitBreaker
+      #
+      #        - id: restaurant-service
+      #          uri: lb://restaurant-service
+      #          predicates:
+      #            - Path=/restaurants/**
+      #          filters:
+      #            - RewritePath=/restaurants/?(?<remaining>.*) , /$\{remaining}
 
       discovery:
         locator:
           enabled: false
+      httpclient:
+        response-timeout: 5s
+        connect-timeout: 1000
 
 
 
@@ -53,4 +53,13 @@ info:
     name: "Api Gateway"
     description: "This is api gateway for common entry point"
     version: "1.0V"
+
+resilience4j:
+  circuitbreaker:
+    configs:
+      default:
+        slidingWindowSize: 10
+        permitted-number-of-calls-in-half-open-state: 2
+        failure-rate-threshold: 50
+        wait-duration-in-open-state: 10000
 
