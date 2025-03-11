@@ -2,6 +2,7 @@ package com.substring.foodie.restaurant.controller;
 
 import com.substring.foodie.restaurant.service.RestaurantService;
 import com.substring.foodie.restaurant.dto.RestaurantDto;
+import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -65,10 +66,17 @@ public class RestaurantController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
+
+    @RateLimiter(name = "get-all-restaurant-rate-limiter", fallbackMethod = "getAllFallBack")
     // Get all restaurants
     @GetMapping
     public ResponseEntity<List<RestaurantDto>> getAll() {
         List<RestaurantDto> restaurants = restaurantService.getAll();
         return new ResponseEntity<>(restaurants, HttpStatus.OK);
+    }
+
+    public ResponseEntity<List<RestaurantDto>> getAllFallBack(Throwable throwable) {
+        System.out.println(throwable.getMessage());
+        return ResponseEntity.ok().body(null);
     }
 }
