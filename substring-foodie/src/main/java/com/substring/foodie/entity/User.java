@@ -1,7 +1,7 @@
 package com.substring.foodie.entity;
 
+import com.substring.foodie.entity.enums.Role;
 import jakarta.persistence.*;
-import jakarta.validation.Constraint;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -29,12 +29,10 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    private String address;
-
-    private String phoneNumber;
+//    private String phoneNumber;
 
     @Enumerated(EnumType.STRING)
-    private Role role; // ADMIN, CUSTOMER, DELIVERY_BOY
+    private Role role; // ADMIN, USER, DELIVERY_BOY, RESTAURANT
 
     private boolean isAvailable = true; // applicable for delivery boy
 
@@ -42,123 +40,46 @@ public class User {
 
     private LocalDate createdDate;
 
-    private  boolean enabled=true;
+    private boolean enabled = true;
 
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Restaurant> restaurants = new ArrayList<>();
 
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinTable(name = "user_role",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id")
-    )
-    private List<RoleEntity> roleEntities = new ArrayList<>();
-
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Address> addresses = new ArrayList<>();
 
 
     @PrePersist
-    public void preSave() {
-        this.createdDate = LocalDate.now();
-    }
-
-    @PostPersist
-    public void postSave() {
-        System.out.println("entity saved : " + this.getId());
-    }
-
-    @PreUpdate
-    public void preUpdate() {
-        System.out.println("entity updated : " + this.getId());
+    protected void onCreate() {
+        createdDate = LocalDate.now();
     }
 
 
-    public String getId() {
-        return id;
-    }
+//
+//    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+//    @JoinTable(name = "user_role",
+//            joinColumns = @JoinColumn(name = "user_id"),
+//            inverseJoinColumns = @JoinColumn(name = "role_id")
+//    )
+//    private List<RoleEntity> roleEntities = new ArrayList<>();
 
-    public void setId(String id) {
-        this.id = id;
-    }
 
-    public String getName() {
-        return name;
-    }
+//    @PrePersist
+//    public void preSave() {
+//        this.createdDate = LocalDate.now();
+//    }
+//
+//    @PostPersist
+//    public void postSave() {
+//        System.out.println("entity saved : " + this.getId());
+//    }
+//
+//    @PreUpdate
+//    public void preUpdate() {
+//        System.out.println("entity updated : " + this.getId());
+//    }
 
-    public void setName(String name) {
-        this.name = name;
-    }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public Role getRole() {
-        return role;
-    }
-
-    public void setRole(Role role) {
-        this.role = role;
-    }
-
-    public boolean isAvailable() {
-        return isAvailable;
-    }
-
-    public void setAvailable(boolean available) {
-        isAvailable = available;
-    }
-
-    public LocalDate getCreatedDate() {
-        return createdDate;
-    }
-
-    public void setCreatedDate(LocalDate createdDate) {
-        this.createdDate = createdDate;
-    }
-
-    public List<Restaurant> getRestaurants() {
-        return restaurants;
-    }
-
-    public void setRestaurants(List<Restaurant> restaurants) {
-        this.restaurants = restaurants;
-    }
-
-    public List<RoleEntity> getRoleEntities() {
-        return roleEntities;
-    }
-
-    public void setRoleEntities(List<RoleEntity> roleEntities) {
-        this.roleEntities = roleEntities;
-    }
 }

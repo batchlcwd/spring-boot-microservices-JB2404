@@ -1,13 +1,8 @@
 package com.substring.foodie.services;
 
-import com.substring.foodie.entity.Restaurant;
-import com.substring.foodie.entity.Role;
-import com.substring.foodie.entity.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import java.util.UUID;
 
 @SpringBootTest
 public class UserService {
