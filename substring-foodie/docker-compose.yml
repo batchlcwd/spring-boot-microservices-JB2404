@@ -1,0 +1,41 @@
+version: "3.8"
+
+services:
+  #  This is database service
+  db-service:
+    image: mysql:8
+    container_name: db-container
+    ports:
+      - "3307:3306"
+    environment:
+      MYSQL_DATABASE: jb2404_foodie
+      MYSQL_ROOT_PASSWORD: root123
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - spring-boot-network
+
+
+  #  This is spring boot project service
+  spring-web-service:
+    build:
+      context: .
+    platform: linux/amd64
+    container_name: substring-foodie-container
+    image: batchlcwd/substring-foodie:v1
+    ports:
+      - "8081:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://db-service:3306/jb2404_foodie
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root123
+    networks:
+      - spring-boot-network
+    depends_on:
+      - db-service
+
+volumes:
+  mysql-data:
+
+networks:
+  spring-boot-network:

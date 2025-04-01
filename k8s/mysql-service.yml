@@ -1,0 +1,75 @@
+apiVersion: apps/v1 # Specifies the API version for Deployment, required for Kubernetes to understand the resource type
+kind: Deployment # Indicates this is a Deployment resource, which manages replica sets and updates
+metadata: # Contains metadata about the deployment
+  name: mysql-deployment # Unique identifier for the MySQL deployment
+  labels: # Labels help in organizing and selecting Kubernetes objects
+    app: mysql # Label to identify this as MySQL application
+spec: # Specification section defines desired state
+  replicas: 1 # Number of MySQL pod copies, single instance to maintain data consistency
+  selector: # Defines how the Deployment finds pods to manage
+    matchLabels:
+      app: mysql # Must match pod template labels
+  template: # Template for creating pods
+    metadata:
+      labels:
+        app: mysql # Labels for pod identification
+    spec:
+      containers: # Container specifications
+        - name: mysql # Container name for MySQL
+          image: mysql:8.0 # MySQL Docker image to use
+          ports: # Port configuration
+            - containerPort: 3306 # Standard MySQL port
+          env: # Environment variables for MySQL configuration
+            - name: MYSQL_ROOT_PASSWORD # Root password for MySQL
+              value: "root1234" # Password value (use secrets in production)
+            - name: MYSQL_DATABASE # Database to create on startup
+              value: "foodie" # Database name
+          volumeMounts: # Mount points for persistent storage
+            - name: mysql-data # Volume name
+              mountPath: /var/lib/mysql # Where MySQL stores its data
+      volumes: # Volume definitions
+        - name: mysql-data # Must match volumeMount name
+          persistentVolumeClaim: # Uses PVC for persistent storage
+            claimName: mysql-pvc # Name of PVC to use
+
+# PersistentVolume configuration for MySQL data persistence
+---
+apiVersion: v1
+kind: PersistentVolume # Defines storage resource
+metadata:
+  name: mysql-pv # PV name
+spec:
+  capacity: # Storage capacity
+    storage: 1Gi # 1 Gigabyte of storage
+  accessModes: # How the volume can be mounted
+    - ReadWriteOnce # Can be mounted as read-write by single node
+  hostPath: # Uses host's filesystem for storage
+    path: "/mnt/data" # Path on host machine
+
+# PersistentVolumeClaim to request storage
+---
+apiVersion: v1
+kind: PersistentVolumeClaim # Storage request
+metadata:
+  name: mysql-pvc # PVC name
+spec:
+  accessModes:
+    - ReadWriteOnce # Single node access mode
+  resources:
+    requests:
+      storage: 1Gi # Amount of storage requested
+
+# MySQL Service for network access
+
+---
+apiVersion: v1
+kind: Service # Exposes MySQL to other pods
+metadata:
+  name: mysql-service # Service name
+spec:
+  selector:
+    app: mysql # Selects MySQL pods
+  ports:
+    - protocol: TCP # Network protocol
+      port: 3307 # Service port
+      targetPort: 3306 # Container port

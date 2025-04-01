@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-boot-demo
+  labels:
+    app: spring-boot-demo
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: spring-boot-demo
+
+  template:
+    metadata:
+      labels:
+        app: spring-boot-demo
+    spec:
+      containers:
+        - name: spring-boot-demo-container
+          image: batchlcwd/dockerdemoapp:v1
+          ports:
+            - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: spring-boot-demo-service
+spec:
+  selector:
+    app: spring-boot-demo
+  ports:
+    - protocol: TCP
+      port: 8080 #port exported by this service
+      targetPort: 8080 # Pod ke kis port ko connect karna hai
+  type: LoadBalancer

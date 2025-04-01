@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: substring-foodie # Application name
+  labels:
+    app: substring-foodie # Application label
+spec:
+  replicas: 1 # Single instance of application
+  selector:
+    matchLabels:
+      app: substring-foodie # Pod selector
+  template:
+    metadata:
+      labels:
+        app: substring-foodie # Pod label
+    spec:
+      containers:
+        - name: substring-foodie # Container name
+          image: batchlcwd/substring-foodie:v1 # Application image
+          ports:
+            - containerPort: 8080 # Application port
+          env: # Database connection environment variables
+            - name: SPRING_DATASOURCE_URL
+              value: "jdbc:mysql://mysql-service:3307/foodie" # MySQL connection URL
+            - name: SPRING_DATASOURCE_USERNAME
+              value: "root" # Database username
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: "root1234" # Database password
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: substring-foodie-service # Service name
+spec:
+  selector:
+    app: substring-foodie # Selects application pods
+  ports:
+    - protocol: TCP # Network protocol
+      port: 8080 # Service port
+      targetPort: 8080 # Container port
+  type: LoadBalancer # Exposes service externally through cloud provider's load balancer
