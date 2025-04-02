@@ -39,7 +39,7 @@ public class Order {
     private LocalDateTime deliveryTime;
     @ManyToOne
     @JoinColumn(name = "delivery_boy_id")
-    private User deliveredBy;
+    private User deliveryBoy;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OrderItem> orderItems = new ArrayList<>();
@@ -49,7 +49,6 @@ public class Order {
 
     @Enumerated(EnumType.STRING)
     private PaymentMode paymentMode;
-
     private String paymentId;
 
 }

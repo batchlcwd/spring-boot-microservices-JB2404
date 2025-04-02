@@ -38,7 +38,7 @@ public class Restaurant {
     private boolean isActive = true;
     private LocalDateTime createdDate;
 
-    @OneToMany(mappedBy = "", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<FoodItem> foodItems = new ArrayList<>();
 
     private String bannerImageUrl;

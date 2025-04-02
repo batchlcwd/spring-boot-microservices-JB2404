@@ -27,6 +27,8 @@ public class FoodItem {
     private String imageUrl;
     private LocalDateTime createdDate;
     private int discountAmount;
+    @ManyToOne
+    private Restaurant restaurant;
 
     @PrePersist
     protected void onCreate() {
