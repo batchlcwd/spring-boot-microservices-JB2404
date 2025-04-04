@@ -41,12 +41,8 @@ public class UserDto
     // feel free to add more fields ad required
 
     private LocalDate createdDate;
-
     private boolean enabled = true;
-
-    private List<RestaurantDto> restaurants = new ArrayList<>();
-
-
+//    private List<RestaurantDto> restaurants = new ArrayList<>();
     private List<AddressDto> addresses = new ArrayList<>();
 
 }

@@ -9,6 +9,6 @@ public interface RestaurantRepository extends JpaRepository<Restaurant, String> 
 
     List<Restaurant> findByIsActive(boolean active);
 
-    List<Restaurant> findByIsOpen(boolean open);
+    List<Restaurant> findByOpen(boolean open);
 
 }

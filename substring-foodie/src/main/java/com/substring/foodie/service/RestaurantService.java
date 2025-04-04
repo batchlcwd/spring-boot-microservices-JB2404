@@ -3,19 +3,21 @@ package com.substring.foodie.service;
 import com.substring.foodie.dto.OrderDto;
 import com.substring.foodie.dto.RestaurantDto;
 import com.substring.foodie.entity.enums.OrderStatus;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
 public interface RestaurantService {
     RestaurantDto addRestaurant(RestaurantDto restaurant);
 
-    RestaurantDto updateRestaurant(RestaurantDto restaurant, String userId);
+    RestaurantDto updateRestaurant(RestaurantDto restaurant, String restaurantId);
 
-    void deleteRestaurant(String userId);
+    void deleteRestaurant(String restaurantId);
 
-    RestaurantDto getRestaurant(String userId);
+    RestaurantDto getRestaurant(String restaurantId);
 
-    List<RestaurantDto> getRestaurants();
+    Page<RestaurantDto> getRestaurants(Pageable pageable);
 
     List<RestaurantDto> getByOwner(String ownerId);
 
