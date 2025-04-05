@@ -1,8 +1,9 @@
 package com.substring.foodie.service;
 
-
 import com.substring.foodie.dto.AddItemToCartRequest;
 import com.substring.foodie.dto.CartDto;
+import com.substring.foodie.entity.CartItem;
+import java.util.List;
 
 public interface CartService {
 
@@ -12,8 +13,7 @@ public interface CartService {
 
     CartDto removeItemFromCart(String cartItemId, String userId);
 
-    CartDto clearCart(String userId);
+    List<CartItem> getCartItems(String userId);
 
-
-
+    void clearCart(String userId);
 }

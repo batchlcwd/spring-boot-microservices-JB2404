@@ -1,5 +1,5 @@
 package com.substring.foodie.entity.enums;
 
 public enum Role {
-    ADMIN, USER, DELIVERY_BOY,RESTAURANT
+    ROLE_ADMIN, ROLE_USER, ROLE_DELIVERY_BOY, ROLE_RESTAURANT
 }

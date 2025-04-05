@@ -10,14 +10,21 @@ import java.util.List;
 public interface OrderService {
 
     OrderDto placeOrder(OrderPlaceRequest orderPlaceRequest);
-    List<OrderDto> getOrders();
-    List<OrderDto> getOrderByRestaurant(String restaurantId);
-    List<OrderDto> getOrderByUser(String userId);
-    List<OrderDto> getOrderByDeliveryBoy(String deliveryBoyId);
-    OrderDto tractOrder(Long orderId);
-    OrderItemDto cancelOrder(Long orderId);
-    OrderDto updateOrderStatus(OrderStatus orderStatus);
-    OrderDto updateOrderStataus(OrderStatus orderStatus);
 
+    List<OrderDto> getOrders();
+
+    List<OrderDto> getOrderByRestaurant(String restaurantId);
+
+    List<OrderDto> getOrderByUser(String userId);
+
+    List<OrderDto> getOrderByDeliveryBoy(String deliveryBoyId);
+
+    OrderDto tractOrder(String orderId);
+
+    OrderItemDto cancelOrder(String orderId);
+
+    OrderDto updateOrderStatus(OrderStatus orderStatus);
+
+    OrderDto updateOrderStataus(OrderStatus orderStatus);
 
 }

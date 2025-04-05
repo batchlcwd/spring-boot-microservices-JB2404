@@ -1,36 +1,24 @@
 package com.substring.foodie.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
-import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Getter
 @Setter
+@AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class Cart {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long cartId;
+    private String cartId;
 
-    private LocalDateTime createAt;
-
-    @OneToOne
-    @JoinColumn(name = "user_id")
-    private User creator;
+    private String userId;
 
     @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<CartItem> cartItems;
-
-
-    @PrePersist
-    protected void onCreate() {
-        createAt = LocalDateTime.now();
-    }
-
+    private List<CartItem> items = new ArrayList<>();
 }

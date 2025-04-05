@@ -17,5 +17,4 @@ public class AddressDto {
     private String pincode;
     private String country;
     private boolean isDefault;
-    private UserDto user;
 }

@@ -1,18 +1,14 @@
 package com.substring.foodie.repository;
 
 import com.substring.foodie.entity.Order;
-import com.substring.foodie.entity.Restaurant;
-import com.substring.foodie.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface OrderRepository extends JpaRepository<Order, Long> {
+public interface OrderRepository extends JpaRepository<Order, String> {
+    List<Order> findByRestaurantId(String restaurantId);
 
-    List<Order> findByRestaurant(Restaurant restaurant);
+    List<Order> findByUserId(String userId);
 
-    List<Order> findByUser(User user);
-
-    List<Order> findByDeliveryBoy(User user);
-
+    List<Order> findByDeliveryBoyId(String deliveryBoyId);
 }

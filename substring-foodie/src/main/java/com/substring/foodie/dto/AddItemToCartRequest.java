@@ -11,7 +11,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class AddItemToCartRequest {
 
-    private String productId;
+    private Long productId;
     private String userId;
     private int quantity;
 

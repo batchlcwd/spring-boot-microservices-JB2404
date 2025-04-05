@@ -1,6 +1,7 @@
 package com.substring.foodie.exception;
 
 import com.substring.foodie.playload.ApiResponse;
+import jakarta.persistence.EntityNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -33,11 +34,11 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public Map<String, String> handleMethodArgumentNotValidException(MethodArgumentNotValidException ex) {
         Map<String, String> errorMap = new HashMap<>();
-        //fetch all errors list from BindingResult
+        // fetch all errors list from BindingResult
         List<ObjectError> allErrors = ex.getBindingResult().getAllErrors();
-        //iterate all errors and put the error to map
+        // iterate all errors and put the error to map
         allErrors.forEach(error -> {
-            //error: we have to fetch the field
+            // error: we have to fetch the field
             String fieldName = ((FieldError) error).getField();
             String message = error.getDefaultMessage();
             errorMap.put(fieldName, message);
@@ -45,7 +46,6 @@ public class GlobalExceptionHandler {
         logger.info(errorMap.toString());
         return errorMap;
     }
-
 
     @ExceptionHandler(SQLIntegrityConstraintViolationException.class)
     public ResponseEntity<ApiResponse> handleSqlException(SQLIntegrityConstraintViolationException exception) {
@@ -61,6 +61,26 @@ public class GlobalExceptionHandler {
 
         return new ResponseEntity<>(apiResponse, HttpStatus.BAD_REQUEST);
 
+    }
+
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public ResponseEntity<ApiResponse> handleResourceNotFoundException(ResourceNotFoundException ex) {
+        ApiResponse apiResponse = new ApiResponse();
+        apiResponse.setSuccess(false);
+        apiResponse.setHttpStatus(HttpStatus.NOT_FOUND);
+        apiResponse.setMessage(ex.getMessage());
+        logger.error(ex.getMessage());
+        return new ResponseEntity<>(apiResponse, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(EntityNotFoundException.class)
+    public ResponseEntity<ApiResponse> handleEntityNotFoundException(EntityNotFoundException ex) {
+        ApiResponse apiResponse = new ApiResponse();
+        apiResponse.setSuccess(false);
+        apiResponse.setHttpStatus(HttpStatus.NOT_FOUND);
+        apiResponse.setMessage(ex.getMessage());
+        logger.error(ex.getMessage());
+        return new ResponseEntity<>(apiResponse, HttpStatus.NOT_FOUND);
     }
 
 }

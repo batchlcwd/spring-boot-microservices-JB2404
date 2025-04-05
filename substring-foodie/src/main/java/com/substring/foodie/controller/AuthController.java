@@ -74,7 +74,7 @@ public class AuthController {
         userDto.setName(userRegisterData.getName());
         userDto.setEmail(userRegisterData.getEmail());
         userDto.setPassword(passwordEncoder.encode(userRegisterData.getPassword()));
-        userDto.setRole(Role.USER);
+        userDto.setRole(Role.ROLE_USER);
         userDto.setAvailable(false);
         userDto.setCreatedDate(LocalDate.now());
         userDto.setEnabled(true);

@@ -19,10 +19,8 @@ import java.util.List;
 @Table(name = "food_order")
 public class Order {
 
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private String id;
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;

@@ -24,7 +24,7 @@ public class OrderItem {
     private FoodItem foodItem;
     private int quantity;
 
-    public int getActualPriceOfOrderItem() {
+    public double getActualPriceOfOrderItem() {
         return quantity * foodItem.actualPrice();
     }
 

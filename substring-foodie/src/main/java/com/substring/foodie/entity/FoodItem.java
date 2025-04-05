@@ -14,14 +14,13 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class FoodItem {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String description;
-    private int price;
-    private boolean isAvailable;
+    private double price;
+    private boolean available;
     @Enumerated(EnumType.STRING)
     private FoodType foodType = FoodType.VEG;
     private String imageUrl;
@@ -35,13 +34,12 @@ public class FoodItem {
         this.createdDate = LocalDateTime.now();
     }
 
-    public int actualPrice() {
+    public double actualPrice() {
         return price - discountAmount;
     }
 
-    public int getDiscountPrecentage() {
+    public double getDiscountPrecentage() {
         return (discountAmount / price) * 100;
     }
-
 
 }

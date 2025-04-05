@@ -1,31 +1,24 @@
 package com.substring.foodie.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
 @Getter
 @Setter
+@AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class CartItem {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-
-    @OneToOne
-    @JoinColumn(name = "food_Id")
-    private FoodItem foodItem;
-    private int quantity;
+    private String cartItemId;
 
     @ManyToOne
-    @JoinColumn(name = "cart_id")
     private Cart cart;
 
-    public int getTotalCartItemPrice() {
-        return quantity * foodItem.actualPrice();
-    }
+    @ManyToOne
+    private FoodItem foodItem;
 
+    private int quantity;
 }

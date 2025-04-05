@@ -16,8 +16,8 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class OrderPlaceRequest {
     private String userId;
-    private String address;
-    private String restaurantId;
+    private AddressDto address;
+    private RestaurantDto restaurantId;
     private OrderStatus status = OrderStatus.PLACED;
     private LocalDateTime orderedAt = LocalDateTime.now();
     private PaymentStatus paymentStatus = PaymentStatus.NOT_PAID;

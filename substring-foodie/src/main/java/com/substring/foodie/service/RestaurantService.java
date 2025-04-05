@@ -1,8 +1,6 @@
 package com.substring.foodie.service;
 
-import com.substring.foodie.dto.OrderDto;
 import com.substring.foodie.dto.RestaurantDto;
-import com.substring.foodie.entity.enums.OrderStatus;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -29,7 +27,6 @@ public interface RestaurantService {
 
     List<RestaurantDto> getByOpen(Boolean isOpen);
 
-
-
+    List<RestaurantDto> getByIsActiveAndOpen(Boolean isActive, Boolean isOpen);
 
 }
