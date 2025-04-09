@@ -38,23 +38,21 @@ public class CartServiceImpl implements CartService {
 
         User user = userRepository.findById(userId).orElseThrow(() -> new ResourceNotFoundException("user not found"));
 
-        //getting or building a cart
-        Cart cart = cartRepository.findByUserId(user.getId())
+        // getting or building a cart
+        Cart cart = cartRepository.findByUser(user)
                 .orElse(Cart.builder()
                         .cartId(UUID.randomUUID().toString())
                         .items(new ArrayList<>())
-                        .userId(userId)
+                        .user(user)
                         .build());
-
 
         FoodItem foodItem = foodItemRepository.findById(request.getProductId())
                 .orElseThrow(() -> new ResourceNotFoundException("Food item not found"));
 
-        //valid ==20
+        // valid ==20
         if (!foodItem.isAvailable()) {
             throw new ResourceNotFoundException("Food item is not available");
         }
-
 
         boolean isFromSameRestaurant = true;
         for (CartItem item : cart.getItems()) {
@@ -65,9 +63,9 @@ public class CartServiceImpl implements CartService {
         }
 
         if (!isFromSameRestaurant) {
-            throw new ResourceNotFoundException("Food item is not from the same restaurant, please clear the card and then add the item");
+            throw new ResourceNotFoundException(
+                    "Food item is not from the same restaurant, please clear the card and then add the item");
         }
-
 
         // Check if item already exists in cart
         boolean itemExists = false;
@@ -107,7 +105,6 @@ public class CartServiceImpl implements CartService {
     public CartDto removeItemFromCart(String cartItemId, String userId) {
         Cart cart = cartRepository.findByUserId(userId)
                 .orElseThrow(() -> new ResourceNotFoundException("Cart not found"));
-
         cart.getItems().removeIf(item -> item.getCartItemId().equals(cartItemId));
         cart = cartRepository.save(cart);
         return convertToDto(cart);
@@ -132,7 +129,6 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public List<CartItem> getCartItems(String userId) {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getCartItems'");
     }
 

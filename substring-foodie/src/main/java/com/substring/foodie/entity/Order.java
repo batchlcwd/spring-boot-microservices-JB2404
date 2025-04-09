@@ -27,8 +27,9 @@ public class Order {
     @ManyToOne
     @JoinColumn(name = "restaurant_id")
     private Restaurant restaurant;
-    @ManyToOne
+    @ManyToOne(cascade =CascadeType.ALL)
     @JoinColumn(name = "address_id")
+
     private Address address;
     private int totalAmount;
     @Enumerated(EnumType.STRING)
