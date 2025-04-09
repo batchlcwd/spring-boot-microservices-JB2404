@@ -1,5 +1,12 @@
 package com.substring.foodie.entity.enums;
 
 public enum OrderStatus {
-    PLACED,ACCEPTED,REJECTED,PREPARING,PICKED_UP,DELIVERED,CANCELLED
+    PLACED,
+    ACCEPTED,
+    PREPARING,
+    READY_FOR_PICKUP,
+    OUT_FOR_DELIVERY,
+    DELIVERED,
+    CANCELLED,
+    REJECTED
 }

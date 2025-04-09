@@ -21,10 +21,8 @@ public interface OrderService {
 
     OrderDto tractOrder(String orderId);
 
-    OrderItemDto cancelOrder(String orderId);
+    OrderDto cancelOrder(String orderId);
 
-    OrderDto updateOrderStatus(OrderStatus orderStatus);
-
-    OrderDto updateOrderStataus(OrderStatus orderStatus);
+    OrderDto updateOrderStataus(String orderId, OrderStatus orderStatus);
 
 }

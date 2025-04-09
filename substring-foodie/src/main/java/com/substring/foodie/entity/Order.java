@@ -49,5 +49,6 @@ public class Order {
     @Enumerated(EnumType.STRING)
     private PaymentMode paymentMode;
     private String paymentId;
+    private  String razorpayOrderId;
 
 }

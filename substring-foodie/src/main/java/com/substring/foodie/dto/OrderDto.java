@@ -37,4 +37,5 @@ public class OrderDto {
     private PaymentStatus paymentStatus;
     private PaymentMode paymentMode;
     private String paymentId;
+    private  String razorpayOrderId;
 }

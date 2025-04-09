@@ -138,24 +138,20 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public OrderItemDto cancelOrder(String orderId) {
+    public OrderDto cancelOrder(String orderId) {
         Order order = orderRepository.findById(orderId)
                 .orElseThrow(() -> new RuntimeException("Order not found"));
         order.setStatus(OrderStatus.CANCELLED);
         Order savedOrder = orderRepository.save(order);
-        return mapper.map(savedOrder, OrderItemDto.class);
+        return mapper.map(savedOrder, OrderDto.class);
     }
 
     @Override
-    public OrderDto updateOrderStatus(OrderStatus orderStatus) {
-        // This method seems redundant with updateOrderStataus
-        throw new UnsupportedOperationException("Use updateOrderStataus instead");
-    }
-
-    @Override
-    public OrderDto updateOrderStataus(OrderStatus orderStatus) {
-        // Note: This method needs more context - like which order to update
-        // Assuming it needs orderId parameter
-        throw new UnsupportedOperationException("Method needs orderId parameter");
+    public OrderDto updateOrderStataus(String orderId, OrderStatus orderStatus) {
+        Order order = orderRepository.findById(orderId)
+                .orElseThrow(() -> new ResourceNotFoundException("Order not found with id: " + orderId));
+        order.setStatus(orderStatus);
+        Order savedOrder = orderRepository.save(order);
+        return mapper.map(savedOrder, OrderDto.class);
     }
 }
